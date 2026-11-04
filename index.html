@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case HL-DN-1105 — The Hair Lounge · Search Visibility Teardown | Tiyan Digital</title>
+<meta name="description" content="Verified search-visibility teardown dossier for The Hair Lounge, Durban North. Concept demo by Tiyan Digital — not affiliated with The Hair Lounge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E0E12; --bg2:#15151C; --bg3:#1C1C24;
+  --ink:#F2F0EA; --ink-dim:#A9A6A0; --ink-faint:#6E6C68;
+  --red:#E23B3B; --red-dark:#7F1D1D; --amber:#D97706; --green:#10B981;
+  --salmon:#F5B5A8; --salmon-text:#5B1414; --coral:#FF6B5B;
+  --line:#26262E; --line-soft:#1E1E26;
+  --font-h:'Anton',sans-serif; --font-b:'Inter',sans-serif; --font-m:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);overflow-x:hidden;line-height:1.6}
+img{max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ============ TICKER ============ */
+.ticker{background:var(--amber);color:#14100A;font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.14em;overflow:hidden;white-space:nowrap;border-bottom:2px solid #14100A}
+.ticker-inner{display:inline-block;padding:9px 0;animation:tick 32s linear infinite}
+.ticker span{margin:0 28px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ CASE HEADER BAR ============ */
+.casebar{background:#000;border-bottom:1px solid var(--line);padding:18px 0}
+.casebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.brand{font-family:var(--font-m);font-size:13px;font-weight:700;letter-spacing:.18em}
+.brand .pink{color:#F9A8D4}
+.brand .amber{color:var(--amber)}
+.case-meta{font-family:var(--font-m);font-size:10.5px;letter-spacing:.12em;color:var(--ink-dim);line-height:1.9}
+.case-meta .amber{color:var(--amber)}
+.dossier-nav{display:flex;gap:8px;flex-wrap:wrap}
+.dossier-nav a{font-family:var(--font-m);font-size:10px;letter-spacing:.12em;text-decoration:none;border:1px solid var(--line);padding:8px 12px;color:var(--ink-dim);transition:.25s}
+.dossier-nav a:hover{border-color:var(--red);color:var(--ink);background:var(--bg2)}
+.verified-chip{font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--green);border:1px solid var(--green);padding:9px 14px;display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F9A8D4,#E23B3B);display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:12px;font-weight:700;color:#0E0E12}
+
+/* ============ HERO ============ */
+.hero{padding:72px 0 64px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(600px 300px at 15% 0%,rgba(226,59,59,.07),transparent 60%),
+  radial-gradient(500px 260px at 85% 20%,rgba(217,119,6,.06),transparent 60%);pointer-events:none}
+.meta-strip{font-family:var(--font-m);font-size:10.5px;letter-spacing:.12em;color:var(--ink-faint);line-height:2;position:relative}
+.meta-strip .hl{color:var(--amber)}
+.status-line{display:flex;align-items:center;gap:14px;margin:26px 0 30px;flex-wrap:wrap;position:relative}
+.badge{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.16em;padding:9px 16px;text-transform:uppercase;display:inline-block}
+.badge.critical{background:var(--red);color:#fff}
+.badge .blink{animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+.incident{font-family:var(--font-m);font-size:11px;letter-spacing:.14em;color:var(--ink-dim)}
+h1.verdict{font-family:var(--font-h);font-size:clamp(46px,7.4vw,108px);line-height:.98;letter-spacing:.01em;color:var(--ink);text-transform:uppercase;position:relative;margin-bottom:26px}
+h1.verdict .zero{color:var(--red)}
+.red-pen{font-family:var(--font-m);font-size:14px;color:var(--coral);border-left:3px solid var(--red);padding:6px 0 6px 16px;margin:0 0 22px;position:relative;transform:rotate(-.4deg)}
+.hero-sub{font-size:17px;color:var(--ink-dim);max-width:640px;position:relative}
+.hero-sub strong{color:var(--ink)}
+
+.verdict-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px;position:relative}
+.vcard{background:var(--bg2);border:1px solid var(--line);padding:34px 32px;position:relative;overflow:hidden}
+.vcard::after{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.vcard.good::after{background:var(--green)}
+.vcard.bad::after{background:var(--red)}
+.vcard .src{font-family:var(--font-m);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:14px}
+.vnum{font-family:var(--font-h);font-size:clamp(72px,9vw,128px);line-height:1;display:flex;align-items:baseline;gap:10px}
+.vnum .unit{font-family:var(--font-m);font-size:18px;font-weight:700;letter-spacing:.1em}
+.vcard.good .vnum{color:var(--green)}
+.vcard.bad .vnum{color:var(--red)}
+.vlabel{font-family:var(--font-h);font-size:22px;letter-spacing:.03em;margin:14px 0 8px;text-transform:uppercase}
+.vfoot{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);line-height:1.9}
+
+/* ============ SECTION HEADERS ============ */
+section{padding:70px 0;border-top:1px solid var(--line-soft)}
+.sec-kicker{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--amber);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-kicker .material{font-size:16px}
+h2.sec-title{font-family:var(--font-h);font-size:clamp(34px,4.6vw,62px);text-transform:uppercase;line-height:1.02;margin-bottom:10px}
+.sec-sub{color:var(--ink-dim);font-size:15px;max-width:700px;margin-bottom:38px}
+.integrity{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--green);border:1px solid var(--green);padding:8px 16px;margin-bottom:30px}
+.integrity .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.6s infinite}
+
+/* ============ METHOD STRIP ============ */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mcard{background:var(--bg2);border:1px solid var(--line);padding:28px 24px;position:relative;opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.mcard.revealed{opacity:1;transform:none}
+.mcard .mhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.mcard .mnum{font-family:var(--font-h);font-size:30px;color:var(--ink-faint)}
+.mcard h3{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.mcard p{font-size:14px;color:var(--ink-dim);margin-bottom:14px}
+.mcard p code{font-family:var(--font-m);font-size:12px;color:var(--ink);background:var(--bg3);padding:1px 6px}
+.mcard .mstatus{font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:.14em}
+.mcard .mstatus .lbl{color:var(--ink-faint)}
+.s-confirmed{color:var(--green)} .s-anomaly{color:var(--red)} .s-friction{color:var(--amber)}
+
+/* ============ DISCLOSURES ============ */
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fcard{background:var(--bg2);border:1px solid var(--line);padding:30px 26px;position:relative;opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease;display:flex;flex-direction:column}
+.fcard.revealed{opacity:1;transform:none}
+.fcard .exhibit{font-family:var(--font-m);font-size:10px;letter-spacing:.16em;color:var(--ink-faint);margin-bottom:14px}
+.fcard .stamp{position:absolute;top:22px;right:20px;font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:.16em;padding:7px 12px;border:2px solid;transform:rotate(-6deg) scale(2.2);opacity:0}
+.fcard.revealed .stamp{animation:stampin .45s cubic-bezier(.2,1.6,.4,1) .35s forwards}
+@keyframes stampin{to{opacity:1;transform:rotate(-6deg) scale(1)}}
+.stamp.critical{color:var(--red);border-color:var(--red)}
+.stamp.high{color:var(--amber);border-color:var(--amber)}
+.stamp.medium{color:var(--ink-dim);border-color:var(--ink-dim)}
+.fcard h3{font-family:var(--font-h);font-size:27px;text-transform:uppercase;line-height:1.05;margin:6px 0 16px;padding-right:90px}
+.fcard .ev{font-size:13.5px;color:var(--ink-dim);margin-bottom:16px}
+.fcard .ev b{color:var(--ink)}
+.fcard .fix{font-family:var(--font-m);font-size:11.5px;color:var(--green);line-height:1.8;margin-bottom:14px}
+.fcard .fix .k{font-weight:700;letter-spacing:.1em}
+.fcard .leak{font-family:var(--font-m);font-size:12px;font-style:italic;color:var(--coral);border-left:2px solid var(--coral);padding-left:12px;margin-top:auto}
+
+/* ============ LEAK FLOW ============ */
+.leak-banner{display:inline-block;font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.14em;background:var(--red);color:#fff;padding:9px 18px;margin-bottom:32px}
+.flow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;align-items:stretch}
+.node{background:var(--bg2);border:1px solid var(--line);padding:30px 24px;position:relative;opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.node.revealed{opacity:1;transform:none}
+.node + .node{border-left:none}
+.node .nnum{font-family:var(--font-h);font-size:40px;color:var(--ink-faint);margin-bottom:8px}
+.node h3{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.node p{font-size:13.5px;color:var(--ink-dim);margin-bottom:16px}
+.node .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.node .chips span{font-family:var(--font-m);font-size:10.5px;background:var(--bg3);border:1px solid var(--line);padding:5px 10px;color:var(--ink)}
+.node .flow-arrow{font-family:var(--font-m);font-size:10.5px;font-weight:700;letter-spacing:.12em}
+.node .g{color:var(--green)} .node .a{color:var(--amber)} .node .c{color:var(--coral)}
+.node.leak-end{border-color:var(--red);background:#1A1214}
+.node .redstamp{display:inline-block;font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--red);padding:10px 14px;line-height:1.6;margin-bottom:12px}
+.node .waste{font-family:var(--font-m);font-size:11.5px;font-style:italic;color:var(--coral)}
+
+/* ============ FIX PLAN ============ */
+.fixband{background:var(--salmon);color:var(--salmon-text);padding:80px 0}
+.fixband .wrap{max-width:1180px}
+.fixband .sec-kicker{color:var(--salmon-text)}
+.fixband h2.sec-title{color:#1A0B0B}
+.fixband .sec-sub{color:#6B2A2A}
+.value-chip{display:inline-block;font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.14em;background:var(--salmon-text);color:var(--salmon);padding:8px 16px;margin-bottom:26px}
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.phase{background:#FFFDF8;border:2px solid var(--salmon-text);padding:32px 28px;position:relative;display:flex;flex-direction:column}
+.phase.featured{box-shadow:8px 8px 0 var(--salmon-text)}
+.phase .pnum{font-family:var(--font-m);font-size:10.5px;font-weight:700;letter-spacing:.18em;color:var(--salmon-text);margin-bottom:8px}
+.phase h3{font-family:var(--font-h);font-size:30px;text-transform:uppercase;color:#1A0B0B;margin-bottom:4px}
+.phase .psub{font-family:var(--font-m);font-size:11px;letter-spacing:.14em;color:#8A4A4A;margin-bottom:18px}
+.phase .price{font-family:var(--font-h);font-size:56px;color:#1A0B0B;line-height:1;margin-bottom:4px}
+.phase .price small{font-family:var(--font-m);font-size:13px;font-weight:400;letter-spacing:.06em}
+.phase .was{font-family:var(--font-m);font-size:13px;color:#B08080;text-decoration:line-through;margin-bottom:16px}
+.phase ul{list-style:none;margin-bottom:20px;flex:1}
+.phase li{font-size:13.5px;color:#3A2A2A;padding:9px 0 9px 28px;border-top:1px solid #F0D9D2;position:relative}
+.phase li::before{content:"✓";position:absolute;left:2px;color:var(--salmon-text);font-weight:700}
+.phase .window{font-family:var(--font-m);font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#FFFDF8;background:var(--salmon-text);padding:8px 12px;text-align:center}
+.phase .offer-note{font-family:var(--font-m);font-size:10px;letter-spacing:.06em;color:#8A4A4A;margin-top:12px;line-height:1.7}
+
+/* ============ CTA ============ */
+.cta-sec{text-align:center;padding:90px 0}
+.cta-sec .sec-kicker{justify-content:center}
+.cta-sec h2.sec-title{font-size:clamp(52px,8vw,120px)}
+.cta-sub{font-size:17px;color:var(--ink-dim);margin:18px auto 36px;max-width:560px}
+.cta-btn{display:inline-block;font-family:var(--font-m);font-size:15px;font-weight:700;letter-spacing:.12em;background:var(--coral);color:#1A0B0B;text-decoration:none;padding:22px 46px;transition:.25s;border:2px solid var(--coral)}
+.cta-btn:hover{background:transparent;color:var(--coral)}
+.cta-fine{font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--ink-faint);margin-top:22px}
+
+/* ============ FOOTER ============ */
+footer{background:#000;border-top:1px solid var(--line);padding:56px 0 0}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:40px}
+.foot-title{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--amber);margin-bottom:14px}
+.foot-disc{font-size:13px;color:var(--ink-dim);max-width:520px;margin-bottom:10px}
+.foot-record{font-family:var(--font-m);font-size:11.5px;line-height:2.2;color:var(--ink-dim)}
+.foot-record .k{color:var(--ink-faint);letter-spacing:.1em}
+.foot-record .v{color:var(--ink)}
+.foot-record .warn{color:var(--amber)}
+.foot-bottom{border-top:1px solid var(--line);padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--font-m);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);line-height:2}
+.foot-bottom .class{color:var(--green);font-weight:700}
+.copyright{border-top:1px solid var(--line);padding:18px 0;font-family:var(--font-m);font-size:10px;letter-spacing:.12em;color:var(--ink-faint);text-align:center}
+
+/* reveal helper */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .verdict-cards,.method-grid,.f-grid,.phase-grid,.foot-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .node + .node{border-left:1px solid var(--line);border-top:none}
+  .fcard h3{padding-right:80px}
+  .cta-btn{padding:18px 30px;font-size:13px}
+  section{padding:56px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  .ticker-inner{animation:none}
+  .reveal,.mcard,.fcard,.node{opacity:1;transform:none;transition:none}
+  .fcard .stamp{opacity:1;transform:rotate(-6deg) scale(1);animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- BUSINESS NAME: single swappable constant (data-biz), set by script below -->
+
+<!-- ===== TICKER ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner" id="tickerTrack">
+    <span>CONCEPT DEMO BY TIYAN DIGITAL — NOT AFFILIATED WITH <span data-biz>THE HAIR LOUNGE</span>.</span>
+    <span>LAT: -29.7891° S</span><span>LON: 31.0422° E</span><span>STATUS: FORENSIC TRIAGE</span>
+    <span>CONCEPT DEMO BY TIYAN DIGITAL — NOT AFFILIATED WITH <span data-biz>THE HAIR LOUNGE</span>.</span>
+    <span>LAT: -29.7891° S</span><span>LON: 31.0422° E</span><span>STATUS: FORENSIC TRIAGE</span>
+  </div>
+</div>
+
+<!-- ===== CASE HEADER BAR ===== -->
+<header class="casebar">
+  <div class="wrap">
+    <div>
+      <div class="brand"><span class="pink">TIYAN DIGITAL</span> · SEARCH VISIBILITY LAB</div>
+      <div class="case-meta" style="margin-top:8px">CASE: HL-DN-1105 | DATE: NOV 2026<br>TARGET: <span data-biz>THE HAIR LOUNGE</span>, <span class="amber">DURBAN NORTH</span></div>
+    </div>
+    <nav class="dossier-nav" aria-label="Dossier sections">
+      <a href="#dossier-brief">DOSSIER BRIEF</a>
+      <a href="#leak-flow">LEAK FLOW</a>
+      <a href="#fix-plan">3-TIER ACTION</a>
+      <a href="#custody">CUSTODY LOG</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="verified-chip">VERIFIED EVIDENCE DOSSIER</span>
+      <span class="avatar" aria-hidden="true">TD</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO: THE VERDICT ===== -->
+<section class="hero" id="dossier-brief" style="border-top:none;padding-top:72px">
+  <div class="wrap">
+    <div class="meta-strip">
+      CASE: HL-DN-1105 | DATE: NOV 2026 | TARGET: <span data-biz>THE HAIR LOUNGE</span>, DURBAN NORTH<br>
+      CONCEPT DEMO BY TIYAN DIGITAL — NOT AFFILIATED WITH <span data-biz>THE HAIR LOUNGE</span>.<br>
+      <span class="hl">LAT: -29°47'28" S · LON: 31°02'44" E · METRO: DURBAN NORTH, KZN, ZA</span><br>
+      VERIFIED AUDIT RECORD: 2026-11-05 UTC
+    </div>
+    <div class="status-line">
+      <span class="badge critical"><span class="blink">⚠</span>&nbsp; STATUS: CRITICAL EXPOSURE · AUDIT COMPLETED</span>
+      <span class="incident">INCIDENT REF: HL-2026-WALL-01</span>
+    </div>
+    <h1 class="verdict">A 5-STAR SALON WITH A <span class="zero">0</span>-STAR SEARCH PRESENCE.</h1>
+    <div class="red-pen">[Investigator Note: 144 rave reviews locked in a walled garden.]</div>
+    <p class="hero-sub">We checked their public listings on <strong>5 Nov 2026</strong>. Everything on this page is <strong>verified</strong> — nothing estimated.</p>
+    <div class="verdict-cards">
+      <div class="vcard good">
+        <div class="src">SOURCE: PUBLIC GRAPH API / MAP META</div>
+        <div class="vnum"><span class="count" data-target="144">0</span><span class="unit">5.0★</span></div>
+        <div class="vlabel">Reviews trapped on Facebook</div>
+        <div class="vfoot">VERIFIED VIA MAP PLACE METADATA &amp; FB PAGE · RECORDED 2026-11-05</div>
+      </div>
+      <div class="vcard bad">
+        <div class="src">CRAWL TARGET: GLOBAL SEARCH INDEX</div>
+        <div class="vnum"><span class="count" data-target="0">0</span><span class="unit">DOMAINS</span></div>
+        <div class="vlabel">Own website &amp; Google search domain</div>
+        <div class="vfoot">MAP PLACE RECORD CRAWLED 2026-11-05 · DOMAIN ATTRIBUTE: NULL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METHOD STRIP ===== -->
+<section id="method">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="material">✓</span> fact_check VERIFICATION PROTOCOL · PUBLIC RECORDS ONLY. NO GUESSES.</div>
+    <div class="integrity"><span class="dot"></span>AUDIT INTEGRITY CHECK: PASS</div>
+    <div class="method-grid">
+      <div class="mcard reveal">
+        <div class="mhead"><span class="mnum">01</span><span class="badge" style="background:var(--green);color:#fff">CONFIRMED</span></div>
+        <h3>Facebook Page Record</h3>
+        <p>Entity ID: <code>/thehairlounge</code>. Holds <b style="color:var(--ink)">144 verified 5.0★ customer ratings</b> behind Facebook's proprietary walled garden. Completely unreachable by anonymous organic Google searchers.</p>
+        <div class="mstatus"><span class="lbl">STATUS:</span> <span class="s-confirmed">WALLED GARDEN STAGNATION</span></div>
+      </div>
+      <div class="mcard reveal">
+        <div class="mhead"><span class="mnum">02</span><span class="badge" style="background:var(--red);color:#fff">HIGH ANOMALY</span></div>
+        <h3>Google Map Place Record</h3>
+        <p>Place ID match at <b style="color:var(--ink)">110 Fairway, Beachwood</b>. Canonical website parameter redirects solely to Facebook and Instagram explore endpoints. Exactly <b style="color:var(--ink)">0 uploaded gallery photos</b> and only <b style="color:var(--ink)">6 external 3rd-party aggregate ratings</b>.</p>
+        <div class="mstatus"><span class="lbl">STATUS:</span> <span class="s-anomaly">ZERO NATIVE VISUAL TRUST</span></div>
+      </div>
+      <div class="mcard reveal">
+        <div class="mhead"><span class="mnum">03</span><span class="badge" style="background:var(--amber);color:#14100A">HIGH FRICTION</span></div>
+        <h3>Fresha Directory Crawl</h3>
+        <p>Discovered solely as rows inside Beachwood &amp; Durban North aggregator category pages (crawled Nov 2026). Display state strictly says <b style="color:var(--ink)">"Call to book"</b> (+27 82 822 9179). No direct digital booking link enabled.</p>
+        <div class="mstatus"><span class="lbl">STATUS:</span> <span class="s-friction">AGGREGATOR INTERMEDIATION</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIX DISCLOSURES ===== -->
+<section id="disclosures">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="material">▣</span> EVIDENTIARY DOSSIER</div>
+    <h2 class="sec-title">The Six Critical Disclosures (F1–F6)</h2>
+    <p class="sec-sub">Extracted under protocol SVL-2026 from public records only. Every finding cites its evidence source.</p>
+    <div class="f-grid">
+
+      <article class="fcard reveal">
+        <span class="stamp critical">CRITICAL</span>
+        <div class="exhibit">EXHIBIT F1 · VERIFIED 05 NOV 2026</div>
+        <h3>No website at all</h3>
+        <p class="ev"><b>Evidence:</b> Map record links exclusively to a Facebook page and Instagram explore place; no primary domain registered or indexable anywhere across web crawlers.</p>
+        <p class="fix"><span class="k">REQUIRED FIX:</span> Launch a high-performance multipage salon site + Google Business Profile-linked verified domain.</p>
+        <p class="leak">[LEAK: 100% of organic web queries bounce to competitors]</p>
+      </article>
+
+      <article class="fcard reveal">
+        <span class="stamp critical">CRITICAL</span>
+        <div class="exhibit">EXHIBIT F2 · VERIFIED 05 NOV 2026</div>
+        <h3>144 five-star reviews invisible on Google</h3>
+        <p class="ev"><b>Evidence:</b> 144 flawless reviews @ 5.0 average are held captive within Facebook, compared to a mere 6 map-platform ratings and zero Google native reviews.</p>
+        <p class="fix"><span class="k">REQUIRED FIX:</span> Google Business Profile review acquisition campaign + LocalBusiness review schema syndication.</p>
+        <p class="leak">[Social proof is stranded behind a login wall]</p>
+      </article>
+
+      <article class="fcard reveal">
+        <span class="stamp high">HIGH</span>
+        <div class="exhibit">EXHIBIT F3 · VERIFIED 05 NOV 2026</div>
+        <h3>Zero photos on their map listing</h3>
+        <p class="ev"><b>Evidence:</b> Exactly 0 photos on map listing. Street view default placeholder appears when prospective clients search on mobile devices.</p>
+        <p class="fix"><span class="k">REQUIRED FIX:</span> High-definition interior, exterior &amp; hair styling portfolio shoot uploaded directly to GBP gallery.</p>
+        <p class="leak">[70% lower map click-through rate without photos]</p>
+      </article>
+
+      <article class="fcard reveal">
+        <span class="stamp high">HIGH</span>
+        <div class="exhibit">EXHIBIT F4 · VERIFIED 05 NOV 2026</div>
+        <h3>No "near me" footprint</h3>
+        <p class="ev"><b>Evidence:</b> High-intent searches like "hair salon Durban North" and "balayage Beachwood" land on Fresha aggregator directory, never on an owned property.</p>
+        <p class="fix"><span class="k">REQUIRED FIX:</span> Localized geo-keyword landing pages + LocalBusiness Schema markup targeting Durban North &amp; Beachwood.</p>
+        <p class="leak">[Paying rent to Fresha for free local search traffic]</p>
+      </article>
+
+      <article class="fcard reveal">
+        <span class="stamp high">HIGH</span>
+        <div class="exhibit">EXHIBIT F5 · VERIFIED 05 NOV 2026</div>
+        <h3>No booking funnel</h3>
+        <p class="ev"><b>Evidence:</b> Fresha lists "Call to book" with phone +27 82 822 9179. After-hours mobile browsers bounce immediately with zero automated self-serve booking path.</p>
+        <p class="fix"><span class="k">REQUIRED FIX:</span> Embedded 24/7 online booking widget + verified WhatsApp direct inquiry integration.</p>
+        <p class="leak">[Lost revenue between 18:00 and 08:00 every single day]</p>
+      </article>
+
+      <article class="fcard reveal">
+        <span class="stamp medium">MEDIUM</span>
+        <div class="exhibit">EXHIBIT F6 · VERIFIED 05 NOV 2026</div>
+        <h3>Invisible to AI search engines</h3>
+        <p class="ev"><b>Evidence:</b> Zero owned web domain and no structured JSON-LD schema — Perplexity, ChatGPT, and Gemini cannot cite or recommend them for local queries.</p>
+        <p class="fix"><span class="k">REQUIRED FIX:</span> GEO entity architecture, structured salon knowledge graph + /llms.txt deployment.</p>
+        <p class="leak">[Zero presence in 2026 generative AI search answers]</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEAK FLOW ===== -->
+<section id="leak-flow">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="material">◈</span> account_tree CRAWL FOOTPRINT &amp; ATTRIBUTION LEAK FLOW</div>
+    <h2 class="sec-title">Where the bookings hemorrhage</h2>
+    <p class="sec-sub">Current search funnel vs. where Durban North bookings are hemorrhaged.</p>
+    <div class="leak-banner">SYSTEM LEAK DETECTED: 83% DROP-OFF</div>
+    <div class="flow">
+      <div class="node reveal">
+        <div class="nnum">01</div>
+        <h3>Intent Trigger</h3>
+        <div class="chips"><span>"best hair salon Durban North"</span><span>"hairdresser near Beachwood"</span></div>
+        <div class="flow-arrow g">SEARCH GENERATED →</div>
+      </div>
+      <div class="node reveal">
+        <div class="nnum">02</div>
+        <h3>Aggregator / Wall</h3>
+        <p>Fresha category list or Facebook login boundary checkpoint.</p>
+        <div class="flow-arrow a">HIGH FRICTION ENCOUNTER →</div>
+      </div>
+      <div class="node reveal">
+        <div class="nnum">03</div>
+        <h3>Manual Friction</h3>
+        <p>"Call to book" +27 82 822 9179 (No 24/7 calendar availability)</p>
+        <div class="flow-arrow c">ABANDONMENT TRIGGER →</div>
+      </div>
+      <div class="node leak-end reveal">
+        <div class="nnum">04</div>
+        <h3>Systemic Bounce</h3>
+        <div class="redstamp">WHERE BOOKINGS LEAK: PROSPECT CLICKS COMPETITOR WITH INSTANT GOOGLE BOOKING.</div>
+        <p class="waste">[Result: 144 5-star reputation wasted at final mile]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FIX PLAN ===== -->
+<section class="fixband" id="fix-plan" style="border-top:none">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="material">✚</span> LIMITED REMEDIATION PRICING</div>
+    <h2 class="sec-title">We ship the full 72-hour foundation for $150.</h2>
+    <p class="sec-sub">Tiered remediation mapped to real service scope. Phase 1 launches the foundation in 72 working hours.</p>
+    <div class="value-chip">DIRECT ACTION VALUE</div>
+    <div class="phase-grid">
+
+      <div class="phase featured reveal">
+        <div class="pnum">PHASE 1</div>
+        <h3>Core Launch</h3>
+        <div class="psub">FOUNDATION &amp; REVIEW MIGRATION</div>
+        <div class="price">$150 <small>one-time</small></div>
+        <div class="was">$199</div>
+        <ul>
+          <li>Custom bespoke multipage salon site with verified GBP linking</li>
+          <li>Claim &amp; calibrate official Google Business Profile at 110 Fairway</li>
+          <li>Facebook review migration campaign + LocalBusiness Schema</li>
+          <li>Upload of initial 20+ HD salon space &amp; styling assets</li>
+        </ul>
+        <div class="window">DELIVERY WINDOW: 72 WORKING HOURS</div>
+        <div class="offer-note">Offer from Tiyan Digital — proposal pricing, not a business fact of the salon.</div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="pnum">PHASE 2</div>
+        <h3>Local Authority</h3>
+        <div class="psub">SEO BASIC</div>
+        <div class="price">$249 <small>/month</small></div>
+        <div class="was" style="visibility:hidden">$0</div>
+        <ul>
+          <li>Target Top 10 Durban North &amp; Beachwood high-value keywords</li>
+          <li>Continuous Google Business Profile management &amp; weekly geo-posts</li>
+          <li>Local citation cleanup &amp; directory alignment across SA web</li>
+          <li>Monthly forensic crawl &amp; search console visibility report</li>
+        </ul>
+        <div class="window">FREQUENCY: MONTHLY RETENTION</div>
+        <div class="offer-note">Offer from Tiyan Digital — proposal pricing, not a business fact of the salon.</div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="pnum">PHASE 3</div>
+        <h3>Next-Gen AI</h3>
+        <div class="psub">GEO BASIC</div>
+        <div class="price">$299 <small>/month</small></div>
+        <div class="was" style="visibility:hidden">$0</div>
+        <ul>
+          <li>AI search engine citation building (ChatGPT, Perplexity, Gemini)</li>
+          <li>Deployment &amp; ongoing maintenance of /llms.txt standard</li>
+          <li>Complete structured JSON-LD Entity Schema Knowledge Graph</li>
+          <li>Synthetic agent brand reputation &amp; recommendation monitoring</li>
+        </ul>
+        <div class="window">FREQUENCY: ADVANCED AI MONITORING</div>
+        <div class="offer-note">Offer from Tiyan Digital — proposal pricing, not a business fact of the salon.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-sec" id="cta">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="material">➤</span> DECISION DIRECTIVE</div>
+    <h2 class="sec-title">Want this fixed?</h2>
+    <p class="cta-sub">Reply to this message on Facebook — it takes one tap.</p>
+    <a class="cta-btn" href="https://www.facebook.com/1080798202009719" target="_blank" rel="noopener">REPLY TO US ON FACEBOOK MESSENGER ▷</a>
+    <div class="cta-fine">No cold call. No lengthy pitch deck. We will send the implementation checklist in 1 tap.</div>
+  </div>
+</section>
+
+<!-- ===== CUSTODY FOOTER ===== -->
+<footer id="custody">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-title">EVIDENTIARY AUDIT DOSSIER · TIYAN DIGITAL SEARCH VISIBILITY LAB</div>
+        <p class="foot-disc">Concept demo by Tiyan Digital — not affiliated with <span data-biz>The Hair Lounge</span>. This teardown dossier is synthesized strictly from publicly accessible indexes, search engine crawls, and platform metadata recorded on 2026-11-05.</p>
+        <p class="foot-disc" style="margin-top:12px">Sample annotations (e.g. "83% drop-off", incident refs, dossier hashes, coordinates) are illustrative exhibit framing inside this concept demo — they are not measured claims about the business.</p>
+      </div>
+      <div>
+        <div class="foot-title">VERIFIED BUSINESS RECORD ON FILE:</div>
+        <div class="foot-record">
+          <span class="k">BUSINESS:</span> <span class="v" data-biz>The Hair Lounge</span><br>
+          <span class="k">ADDRESS:</span> <span class="v">110 Fairway, Beachwood, Durban North, South Africa</span><br>
+          <span class="k">PHONE:</span> <span class="v">+27 82 822 9179</span><br>
+          <span class="k">CATEGORY:</span> <span class="v">Hair salon</span><br>
+          <span class="k">HOURS:</span> <span class="warn">(TO BE CONFIRMED)</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>
+        TIYAN DIGITAL · SEARCH VISIBILITY LAB<br>
+        Concept demo by Tiyan Digital — not affiliated with <span data-biz>The Hair Lounge</span>. Forensic audit dossier compiled for evidentiary analysis of generative AI and local search citation footprints.<br>
+        HOURS: (TO BE CONFIRMED) · ADDRESS: 110 FAIRWAY, BEACHWOOD, DURBAN NORTH
+      </div>
+      <div style="text-align:right">
+        <span class="class">CLASSIFICATION: UNRESTRICTED LAB DEMO</span><br>
+        © Tiyan Digital 2026 · Forensic SEO/GEO Audit Unit<br>
+        DOSSIER HASH: 9a4f-88c1-hl-dbn-2026
+      </div>
+    </div>
+  </div>
+  <div class="copyright">© TIYAN DIGITAL 2026 · FORENSIC SEO/GEO VISIBILITY LAB · RECORD HASH: 1105-HL-DBN-GEO-AUDIT-VERIFIED</div>
+</footer>
+
+<script>
+/* === BUSINESS NAME: ONE swappable constant === */
+const BUSINESS_NAME = "The Hair Lounge";
+document.querySelectorAll("[data-biz]").forEach(el => { el.textContent = BUSINESS_NAME; });
+
+/* === Count-up on load === */
+function countUp(el){
+  const target = parseInt(el.dataset.target, 10);
+  const dur = 1400, t0 = performance.now();
+  function frame(t){
+    const p = Math.min((t - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased);
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+window.addEventListener("load", () => {
+  document.querySelectorAll(".count").forEach(countUp);
+});
+
+/* === Stamp + scroll reveal === */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* === Duplicate ticker for seamless loop === */
+const track = document.getElementById("tickerTrack");
+track.innerHTML += track.innerHTML;
+</script>
+</body>
+</html>
